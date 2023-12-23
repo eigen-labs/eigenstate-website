@@ -9,7 +9,6 @@ export default function Home() {
 
     <>
         <Header/>
-        <div className='h-screen bg-green-500 z-0'></div>
     </>
     
   )
