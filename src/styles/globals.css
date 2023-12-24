@@ -19,7 +19,6 @@ body {
   background: rgb(var(--background-color-rgb));
 }
 
-/* styles/globals.css */
 .timeframe-button:hover::after,
 .timeframe-button.active::after {
     content: '';

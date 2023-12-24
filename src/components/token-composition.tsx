@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Chart, { TooltipItem } from 'chart.js/auto';
 import generateData from '@/utils/utils';
+import Checkbox from '@/components/checkbox'
 
 const TokenComposition = () => {
 
@@ -135,25 +136,17 @@ const TokenComposition = () => {
                 <canvas ref={chartRef} />
 
                 {/* Dataset Selectors */}
-                <div className="flex justify-center mt-4">
-                    <div>
-                        <input
-                            type="checkbox"
-                            id="dataset1"
-                            checked={datasetsVisibility.dataset1}
-                            onChange={() => toggleDatasetVisibility('dataset1')}
-                        />
-                        <label htmlFor="dataset1">Dataset 1</label>
-                    </div>
-                    <div className="ml-4">
-                        <input
-                            type="checkbox"
-                            id="dataset2"
-                            checked={datasetsVisibility.dataset2}
-                            onChange={() => toggleDatasetVisibility('dataset2')}
-                        />
-                        <label htmlFor="dataset2">Dataset 2</label>
-                    </div>
+                <div className="flex justify-center mt-4 font-orbitron text-sm">
+                    <Checkbox
+                        isChecked={datasetsVisibility.dataset1}
+                        onToggle={() => toggleDatasetVisibility('dataset1')}
+                        label="Dataset 1"
+                    />
+                    <Checkbox
+                        isChecked={datasetsVisibility.dataset2}
+                        onToggle={() => toggleDatasetVisibility('dataset2')}
+                        label="Dataset 2"
+                    />
                 </div>
 
             </div>
