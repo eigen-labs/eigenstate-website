@@ -13,7 +13,7 @@ const TokenComposition = () => {
     const [timeframe, setTimeframe] = useState(200); // Default timeframe
     const [chartData, setChartData] = useState<number[]>([]); // Define the type of chartData
     const [datasetsVisibility, setDatasetsVisibility] = useState({ dataset1: true, dataset2: true });
-
+    
     useEffect(() => {
         // Function to update the state with the current window width
         const handleResize = () => {
@@ -52,6 +52,7 @@ const TokenComposition = () => {
                             borderWidth: 1,
                             fill: true,
                             hidden: !datasetsVisibility.dataset1,
+                            pointHoverRadius: 10, // Increase the radius when hovered
                         },
                         {
                             label: 'Dataset 2',
@@ -61,6 +62,7 @@ const TokenComposition = () => {
                             borderWidth: 1,
                             fill: true,
                             hidden: !datasetsVisibility.dataset2,
+                            pointHoverRadius: 10, // Increase the radius when hovered
                         },
                     ]
                     },
@@ -76,7 +78,7 @@ const TokenComposition = () => {
                             },    
                             tooltip: {
                                 enabled: true,
-                                mode: 'index',
+                                mode: 'nearest',
                                 intersect: false,
                                 callbacks: {
                                     label: function(tooltipItem: TooltipItem<'line'>) {
@@ -91,9 +93,9 @@ const TokenComposition = () => {
                             },
                         },
                         interaction: {
-                            mode: 'nearest',
-                            intersect: true,
-                        }
+                            mode: 'nearest', // Highlight the nearest point
+                            intersect: false,
+                        },
                     }
                 });
                 return () => {
