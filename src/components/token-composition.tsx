@@ -116,11 +116,11 @@ const TokenComposition = () => {
     return (
         <>
             {/* Title */}
-            <div className='font-orbitron text-2xl m-20'>
+            <div className={`font-orbitron ${windowWidth < 600 ? 'm-4 text-lg': 'm-20 text-2xl' }`}>
                 Composition of Restaked Tokens
             </div>
 
-            <div className="relative m-20 z-0">
+            <div className={`relative ${windowWidth < 600 ? 'm-4 mt-12': 'm-20' } z-0`}>
 
                 {/* Timeframe selection buttons */}
 
