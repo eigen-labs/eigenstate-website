@@ -5,10 +5,13 @@ import generateData from '@/utils/utils';
 
 const TokenComposition = () => {
 
+    type DatasetKey = 'dataset1' | 'dataset2';
+
     const chartRef = useRef<HTMLCanvasElement>(null);
     const [windowWidth, setWindowWidth] = useState(0);
     const [timeframe, setTimeframe] = useState(200); // Default timeframe
     const [chartData, setChartData] = useState<number[]>([]); // Define the type of chartData
+    const [datasetsVisibility, setDatasetsVisibility] = useState({ dataset1: true, dataset2: true });
 
     useEffect(() => {
         // Function to update the state with the current window width
@@ -21,8 +24,6 @@ const TokenComposition = () => {
 
         // Add event listener for window resize
         window.addEventListener('resize', handleResize);
-
-        console.log(`Current window width: ${windowWidth}px`);
 
         // Clean up: Remove event listener on component unmount
         return () => window.removeEventListener('resize', handleResize);
@@ -49,6 +50,7 @@ const TokenComposition = () => {
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1,
                             fill: true,
+                            hidden: !datasetsVisibility.dataset1,
                         },
                         {
                             label: 'Dataset 2',
@@ -57,6 +59,7 @@ const TokenComposition = () => {
                             borderColor: 'rgba(54, 162, 235, 1)',
                             borderWidth: 1,
                             fill: true,
+                            hidden: !datasetsVisibility.dataset2,
                         },
                     ]
                     },
@@ -67,6 +70,9 @@ const TokenComposition = () => {
                             }
                         },
                         plugins: {
+                            legend: {
+                                display: false // Add this line to hide the legend
+                            },    
                             tooltip: {
                                 enabled: true,
                                 mode: 'index',
@@ -94,7 +100,15 @@ const TokenComposition = () => {
                 };    
             }    
         }
-    }, [chartData, windowWidth]);
+    }, [chartData, windowWidth, datasetsVisibility]);
+
+    // Handle dataset visibility toggle
+    const toggleDatasetVisibility = (dataset: DatasetKey) => {
+        setDatasetsVisibility(prev => ({
+            ...prev,
+            [dataset]: !prev[dataset]
+        }));
+    };
 
     return (
         <>
@@ -107,7 +121,7 @@ const TokenComposition = () => {
 
                 {/* Timeframe selection buttons */}
 
-                <div className="font-orbitron text-sm absolute -top-4 right-0 flex">
+                <div className="font-orbitron text-sm absolute -top-8 right-0 flex">
 
                     {[1, 7, 30, 200].map((tf) => (
                         <button key={tf} onClick={() => setTimeframe(tf)} className={`px-2 py-1 text-white relative timeframe-button ${timeframe === tf ? 'active' : ''}`}>
@@ -119,6 +133,28 @@ const TokenComposition = () => {
 
                 {/* Chart canvas */}
                 <canvas ref={chartRef} />
+
+                {/* Dataset Selectors */}
+                <div className="flex justify-center mt-4">
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="dataset1"
+                            checked={datasetsVisibility.dataset1}
+                            onChange={() => toggleDatasetVisibility('dataset1')}
+                        />
+                        <label htmlFor="dataset1">Dataset 1</label>
+                    </div>
+                    <div className="ml-4">
+                        <input
+                            type="checkbox"
+                            id="dataset2"
+                            checked={datasetsVisibility.dataset2}
+                            onChange={() => toggleDatasetVisibility('dataset2')}
+                        />
+                        <label htmlFor="dataset2">Dataset 2</label>
+                    </div>
+                </div>
 
             </div>
 

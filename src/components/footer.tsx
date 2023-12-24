@@ -19,8 +19,6 @@ const Footer = () => {
         // Add event listener for window resize
         window.addEventListener('resize', handleResize);
 
-        console.log(`Current window width: ${windowWidth}px`);
-
         // Clean up: Remove event listener on component unmount
         return () => window.removeEventListener('resize', handleResize);
     }, []); // Empty dependency array ensures this runs only on mount and unmount
