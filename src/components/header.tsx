@@ -72,7 +72,7 @@ const Header = () => {
 
         {/* Opening Mobile Menu */}
 
-        <div className={`flex flex-col items-center overflow-hidden bg-system-color w-full transition-all duration-300 absolute z-1 ${ isOpen ? 'h-screen' : 'h-0'}`}>
+        <div className={`flex flex-col items-center overflow-hidden bg-system-color w-full transition-all duration-300 absolute z-10 ${ isOpen ? 'h-screen' : 'h-0'}`}>
 
           {/* Native Links */}
           <div className="flex flex-col m-4 font-orbitron">

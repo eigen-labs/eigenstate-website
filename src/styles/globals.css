@@ -18,3 +18,21 @@ body {
   color: rgb(var(--text-color-rgb));
   background: rgb(var(--background-color-rgb));
 }
+
+/* styles/globals.css */
+.timeframe-button:hover::after,
+.timeframe-button.active::after {
+    content: '';
+    display: block;
+    height: 2px; /* Height of the line */
+    width: 66%; /* Two-thirds width */
+    background-color: white;
+    opacity: 0.5; /* Semi-transparent for hover */
+    position: absolute;
+    bottom: 0;
+    left: 17%; /* Center the line (100% - 66%) / 2 */
+}
+
+.timeframe-button.active::after {
+    opacity: 1; /* Fully opaque for active */
+}
