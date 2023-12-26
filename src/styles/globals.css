@@ -2,6 +2,13 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+@font-face {
+  font-family: 'Avant Garde';
+  src: url('/public/avant-garde-book.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --text-color-rgb: 0, 0, 0;
   --background-color-rgb: 255, 255, 255;

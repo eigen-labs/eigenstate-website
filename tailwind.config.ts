@@ -19,7 +19,8 @@ const config: Config = {
         '27px': '27px'
       },
       fontFamily: {
-        orbitron: ['Orbitron', 'sans-serif'] 
+        orbitron: ['Orbitron', 'sans-serif'] ,
+        'avantgarde': ['"Avant Garde"', 'sans-serif'],
       },
       backgroundColor: {
         'system-color': 'rgb(var(--background-color-rgb))',
